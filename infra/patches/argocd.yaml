@@ -24869,6 +24869,8 @@ cluster:
           namespace: argocd
         ---
         apiVersion: v1
+        data:
+          server.insecure: "true"
         kind: ConfigMap
         metadata:
           labels:
@@ -25090,7 +25092,7 @@ cluster:
         metadata:
           annotations:
             omni-kube-service-exposer.sidero.dev/label: ArgoCD
-            omni-kube-service-exposer.sidero.dev/port: "50080"
+            omni-kube-service-exposer.sidero.dev/port: "80"
             omni-kube-service-exposer.sidero.dev/prefix: argocd
           labels:
             app.kubernetes.io/component: server
@@ -26839,7 +26841,7 @@ cluster:
           - git:
               directories:
               - path: apps/*/*
-              repoURL: https://github.com/jeprobasco@my365.bellevue.edu/talos-gitops.git
+              repoURL: https://github.com/jessprobasco/talos-gitops.git
               revision: main
           goTemplate: true
           goTemplateOptions:
@@ -26854,7 +26856,7 @@ cluster:
               project: default
               source:
                 path: '{{.path.path}}'
-                repoURL: https://github.com/jeprobasco@my365.bellevue.edu/talos-gitops.git
+                repoURL: https://github.com/jessprobasco/talos-gitops.git
                 targetRevision: main
               syncPolicy:
                 automated:
