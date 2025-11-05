@@ -8,7 +8,7 @@ spec:
   goTemplateOptions: ["missingkey=error"]
   generators:
     - git:
-        repoURL: https://github.com/jeprobasco@my365.bellevue.edu/talos-gitops.git  # <--- CHANGE THIS
+        repoURL: https://github.com/jessprobasco/talos-gitops.git  # <--- CHANGE THIS
         revision: main
         directories:
           - path: apps/*/*
@@ -18,7 +18,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/jeprobasco@my365.bellevue.edu/talos-gitops.git  # <--- CHANGE THIS
+        repoURL: https://github.com/jessprobasco/talos-gitops.git  # <--- CHANGE THIS
         targetRevision: main
         path: '{{.path.path}}'
       destination:
