@@ -25088,12 +25088,14 @@ cluster:
         apiVersion: v1
         kind: Service
         metadata:
+          annotations:
+            omni-kube-service-exposer.sidero.dev/label: ArgoCD
+            omni-kube-service-exposer.sidero.dev/port: "50080"
+            omni-kube-service-exposer.sidero.dev/prefix: argocd
           labels:
             app.kubernetes.io/component: server
             app.kubernetes.io/name: argocd-server
             app.kubernetes.io/part-of: argocd
-            omni.sidero.dev/workload-proxy: "true"
-            omni.sidero.dev/workload-proxy-port: "443"
           name: argocd-server
           namespace: argocd
         spec:

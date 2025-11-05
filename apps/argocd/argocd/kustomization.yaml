@@ -4,7 +4,6 @@ kind: Kustomization
 namespace: argocd
 
 resources:
-  # Namespace must be first!
   - namespace.yaml
   - https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
   - bootstrap-app-set.yaml
@@ -15,8 +14,8 @@ patches:
       name: argocd-server
     patch: |-
       - op: add
-        path: /metadata/labels/omni.sidero.dev~1workload-proxy
-        value: "true"
-      - op: add
-        path: /metadata/labels/omni.sidero.dev~1workload-proxy-port
-        value: "443"
+        path: /metadata/annotations
+        value:
+          omni-kube-service-exposer.sidero.dev/port: "50080"
+          omni-kube-service-exposer.sidero.dev/label: "ArgoCD"
+          omni-kube-service-exposer.sidero.dev/prefix: "argocd"
