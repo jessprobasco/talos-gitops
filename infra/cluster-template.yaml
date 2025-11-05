@@ -1,0 +1,22 @@
+kind: Cluster
+name: talos-cluster-1-1  # Change this to match your cluster name in Omni
+talos:
+  version: v1.11.3  # Adjust to your Talos version
+kubernetes:
+  version: 1.34.1  # Adjust to your Kubernetes version
+features:
+  enableWorkloadProxy: true  # This enables Omni Workload Proxy
+patches:
+  - name: argocd
+    file: patches/argocd.yaml
+---
+kind: ControlPlane
+machineClass:
+  name: default  # Change this to match your machine class name
+  size: 1  # You mentioned 1 control plane
+---
+kind: Workers
+name: workers
+machineClass:
+  name: default  # Change this to match your machine class name
+  size: 2  # Assuming your 3 nodes = 1 CP + 2 workers

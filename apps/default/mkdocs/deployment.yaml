@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mkdocs
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mkdocs
+  template:
+    metadata:
+      labels:
+        app: mkdocs
+    spec:
+      containers:
+      - name: mkdocs
+        image: squidfunk/mkdocs-material:latest
+        ports:
+        - containerPort: 8000
+        command: ["mkdocs"]
+        args: ["serve", "--dev-addr=0.0.0.0:8000"]
+        volumeMounts:
+        - name: docs
+          mountPath: /docs
+      initContainers:
+      - name: git-sync
+        image: alpine/git:latest
+        command:
+        - sh
+        - -c
+        - |
+          git clone https://github.com/jessprobasco/CBG.git /docs
+        volumeMounts:
+        - name: docs
+          mountPath: /docs
+      volumes:
+      - name: docs
+        emptyDir: {}
