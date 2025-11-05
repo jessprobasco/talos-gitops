@@ -1,5 +1,5 @@
 kind: Cluster
-name: talos-cluster-1-1  # Change this to match your cluster name in Omni
+name: talos-cluster-1  # Change this to match your cluster name in Omni
 talos:
   version: v1.11.3  # Adjust to your Talos version
 kubernetes:
@@ -12,11 +12,11 @@ patches:
 ---
 kind: ControlPlane
 machineClass:
-  name: default  # Change this to match your machine class name
+  name: controlplane  # Change this to match your machine class name
   size: 1  # You mentioned 1 control plane
 ---
 kind: Workers
 name: workers
 machineClass:
-  name: default  # Change this to match your machine class name
+  name: worker  # Change this to match your machine class name
   size: 2  # Assuming your 3 nodes = 1 CP + 2 workers

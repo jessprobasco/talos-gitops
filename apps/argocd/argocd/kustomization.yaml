@@ -4,6 +4,8 @@ kind: Kustomization
 namespace: argocd
 
 resources:
+  # Namespace must be first!
+  - namespace.yaml
   - https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
   - bootstrap-app-set.yaml
 
